@@ -1,0 +1,8 @@
+<h1>Edit Band <%= @band.name %></h1>
+<a href="<%= band_url(@band) %>">Back</a>
+<hr>
+
+<form action="<%= band_url(@band) %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <%= render "shared/band_form" %>
+</form>

@@ -23,10 +23,5 @@
 <br>
 
 
-<a href="<%= edit_band_url(@band.id) %>">Edit Band</a>
-
-<form action="<%= band_url(@band.id) %>" method="POST">
-  <%= auth_token %>
-  <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Band">
-</form>
+<a href="<%= edit_band_url(@band) %>">Edit Band</a>
+<%= delete_button_to(band_url(@band), "Delete Band") %>

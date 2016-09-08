@@ -1,5 +1,6 @@
 class BandsController < ApplicationController
   before_action :require_user!
+  before_action :current_band, only: [:edit, :show, :update]
 
   def index
     @bands = Band.all
@@ -7,7 +8,7 @@ class BandsController < ApplicationController
   end
 
   def new
-    render :new
+    @band = Band.new
   end
 
   def create
@@ -25,21 +26,31 @@ class BandsController < ApplicationController
   end
 
   def show
-    @band = Band.find(params[:id])
-    @albums = Album.where(band_id: params[:id])
+    @albums = current_band.albums
     render :show
   end
 
   def update
-
+    @band.name = band_param[:name]
+    if @band.save
+      redirect_to bands_url
+    else
+      flash.now[:errors] = @band.errors.full_messages
+      render :new
+    end
   end
 
   def destroy
-
+    current_band.destroy
+    redirect_to bands_url
   end
 
   private
   def band_param
     params.require(:band).permit(:name)
+  end
+
+  def current_band
+    @band ||= Band.find(params[:id])
   end
 end
