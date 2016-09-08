@@ -27,18 +27,18 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    @band.name = band_param[:name]
-    if @band.save
-      redirect_to bands_url
+    @album.update(album_params)
+    if @album.save
+      redirect_to band_url(@album.band_id)
     else
-      flash.now[:errors] = @band.errors.full_messages
+      flash.now[:errors] = @album.errors.full_messages
       render :new
     end
   end
 
   def destroy
-    current_band.destroy
-    redirect_to bands_url
+    current_album.destroy
+    redirect_to band_url(@album.band_id)
   end
 
   private
