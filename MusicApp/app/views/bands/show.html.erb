@@ -1,4 +1,5 @@
 <h1>Albums for <%= @band.name %></h1>
+<h4><a href="<%= bands_url %>">Back</a></h4>
 <hr>
 <table>
   <thead>
@@ -18,3 +19,14 @@
     </tr>
   <% end %>
 </table>
+<br>
+<br>
+
+
+<a href="<%= edit_band_url(@band.id) %>">Edit Band</a>
+
+<form action="<%= band_url(@band.id) %>" method="POST">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Band">
+</form>

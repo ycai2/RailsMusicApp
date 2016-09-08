@@ -18,6 +18,7 @@
 
 
 <%= yield %>
+<hr>
 <% if logged_in? %>
   <p>User: <%= current_user.email %></p>
   <form action="<%= session_url %>" method="POST">

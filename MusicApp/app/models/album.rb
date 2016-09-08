@@ -14,7 +14,7 @@
 class Album < ActiveRecord::Base
   validates :name, :band_id, :live, presence: true
 
-  has_many :tracks
+  has_many :tracks, dependent: :destroy
   belongs_to :band
 
 end

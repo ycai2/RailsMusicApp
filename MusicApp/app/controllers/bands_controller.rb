@@ -6,16 +6,22 @@ class BandsController < ApplicationController
     render :index
   end
 
-  def create
-
+  def new
+    render :new
   end
 
-  def new
-
+  def create
+    @band = Band.new(band_param)
+    if @band.save
+      redirect_to bands_url
+    else
+      flash.now[:errors] = @band.errors.full_messages
+      render :new
+    end
   end
 
   def edit
-
+    render :edit
   end
 
   def show
@@ -34,6 +40,6 @@ class BandsController < ApplicationController
 
   private
   def band_param
-
+    params.require(:band).permit(:name)
   end
 end
