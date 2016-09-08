@@ -4,6 +4,7 @@ class AlbumsController < ApplicationController
 
   def new
     @album = Album.new
+    @bands = Band.all
   end
 
   def create
@@ -18,6 +19,7 @@ class AlbumsController < ApplicationController
   end
 
   def edit
+    @bands = Band.all
     render :edit
   end
 
