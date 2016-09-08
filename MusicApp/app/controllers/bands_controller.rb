@@ -19,6 +19,8 @@ class BandsController < ApplicationController
   end
 
   def show
+    @band = Band.find(params[:id])
+    @albums = Album.where(band_id: params[:id])
     render :show
   end
 
@@ -27,6 +29,11 @@ class BandsController < ApplicationController
   end
 
   def destroy
+
+  end
+
+  private
+  def band_param
 
   end
 end

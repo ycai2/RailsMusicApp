@@ -1,0 +1,20 @@
+<h1>Albums for <%= @band.name %></h1>
+<hr>
+<table>
+  <thead>
+    <td>Name</td>
+    <td>Year</td>
+    <td>Type</td>
+  </thead>
+  <% @albums.each do |album| %>
+    <tr>
+      <td><a href="<%= album_url(album.id) %>"><%= album.name %></a></td>
+      <td><%= album.yr %></td>
+      <% if album.live %>
+        <td>Live</td>
+      <% else %>
+        <td>Studio</td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
