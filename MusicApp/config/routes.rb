@@ -40,6 +40,9 @@ Rails.application.routes.draw do
   #     end
   #   end
 
+  resources :users, only: [:create, :new, :show]
+  resource :session, only: [:create, :new, :destroy]
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
