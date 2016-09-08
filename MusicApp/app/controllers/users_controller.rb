@@ -9,7 +9,8 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user
       user.save!
-      redirect_to "http://google.com"
+      login_user!(user)
+      redirect_to user_url(user.id)
     else
       flash.now[:errors] = ['Invalid user info!']
       render :new
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    render :show
   end
 
   private
