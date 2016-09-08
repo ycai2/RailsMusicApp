@@ -1,4 +1,6 @@
 class BandsController < ApplicationController
+  before_action :require_user!
+
   def index
     @bands = Band.all
     render :index
@@ -17,7 +19,7 @@ class BandsController < ApplicationController
   end
 
   def show
-
+    render :show
   end
 
   def update
