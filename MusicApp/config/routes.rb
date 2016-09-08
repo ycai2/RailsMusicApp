@@ -50,8 +50,13 @@ Rails.application.routes.draw do
   resources :albums, only: [:edit, :show, :update, :destroy] do
     resources :tracks, only: [:new, :create]
   end
-  resources :tracks, only: [:edit, :show, :update, :destroy]
+  resources :tracks, only: [:edit, :show, :update, :destroy] do
+    resources :notes, only: [:create]
+  end
 
+
+
+  resources :notes, only: [:destroy]
 
   # Example resource route with concerns:
   #   concern :toggleable do

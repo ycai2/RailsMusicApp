@@ -1,0 +1,6 @@
+<form action="<%= track_notes_url(@track.id) %>" method="POST">
+  <%= auth_token %>
+  <textarea name="note[text]" rows="8" cols="40"></textarea>
+  <br>
+  <input type="submit">
+</form>

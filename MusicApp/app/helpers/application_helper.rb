@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include ERB::Util
   def auth_token
     "<input
       type='hidden'
@@ -12,5 +13,11 @@ module ApplicationHelper
             "<input type='hidden' name='_method' value='#{method}'>"\
             "<input type='submit' value='#{button_text}'>"\
           "</form>".html_safe
+  end
+
+  def ugly_lyrics(lyrics)
+    result = ""
+    lyrics.each_line { |l| result << "&#9835; #{l}" }
+    "<pre>#{result}</pre>".html_safe
   end
 end

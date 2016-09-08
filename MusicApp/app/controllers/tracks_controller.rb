@@ -19,6 +19,7 @@ class TracksController < ApplicationController
   end
 
   def edit
+    @albums = Album.all
     render :edit
   end
 
@@ -28,18 +29,18 @@ class TracksController < ApplicationController
   end
 
   def update
-    @album.update(album_params)
-    if @album.save
-      redirect_to band_url(@album.band_id)
+
+    if @track.update(track_params)
+      redirect_to album_url(@track.album_id)
     else
-      flash.now[:errors] = @album.errors.full_messages
+      flash.now[:errors] = @track.errors.full_messages
       render :new
     end
   end
 
   def destroy
-    current_album.destroy
-    redirect_to band_url(@album.band_id)
+    current_track.destroy
+    redirect_to album_url(@track.album_id)
   end
 
   private
