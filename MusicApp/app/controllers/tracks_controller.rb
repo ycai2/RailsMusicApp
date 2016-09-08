@@ -1,18 +1,19 @@
 class TracksController < ApplicationController
   before_action :require_user
-  before_action :current_album, only: [:edit, :show, :update]
+  before_action :current_track, only: [:edit, :show, :update]
 
   def new
-    @album = Album.new
+    @track = Track.new(album_id: params[:album_id])
+    @albums = Album.all
   end
 
   def create
-    @album = Album.new(album_params)
-    @album.band_id = params[:band_id]
-    if @album.save
-      redirect_to band_url(@album.band_id)
+    @track = Track.new(track_params)
+    if @track.save
+      redirect_to album_url(@track.album_id)
     else
-      flash.now[:errors] = @album.errors.full_messages
+      flash.now[:errors] = @track.errors.full_messages
+      @albums = Album.all
       render :new
     end
   end
@@ -22,7 +23,7 @@ class TracksController < ApplicationController
   end
 
   def show
-    @tracks = current_album.tracks
+    @track = current_track
     render :show
   end
 
@@ -43,10 +44,10 @@ class TracksController < ApplicationController
 
   private
   def track_params
-    params.require(:track).permit(:name, :bonus, :lyrics)
+    params.require(:track).permit(:name, :bonus, :lyrics, :album_id)
   end
 
-  def current_album
+  def current_track
     @track ||= Track.find(params[:id])
   end
 end

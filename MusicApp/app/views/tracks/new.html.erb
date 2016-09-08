@@ -1,0 +1,6 @@
+<h1>Create New Track</h1>
+<hr>
+
+<form action="<%= album_tracks_url(params[:album_id]) %>" method="POST">
+  <%= render "shared/track_form" %>
+</form>

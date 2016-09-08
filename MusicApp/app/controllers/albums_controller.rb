@@ -14,6 +14,7 @@ class AlbumsController < ApplicationController
       redirect_to band_url(@album.band_id)
     else
       flash.now[:errors] = @album.errors.full_messages
+      @bands = Band.all
       render :new
     end
   end

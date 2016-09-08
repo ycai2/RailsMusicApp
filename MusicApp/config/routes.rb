@@ -48,9 +48,9 @@ Rails.application.routes.draw do
     resources :albums, only: [:new, :create]
   end
   resources :albums, only: [:edit, :show, :update, :destroy] do
-    resources :tracks, only: [:new]
+    resources :tracks, only: [:new, :create]
   end
-  resources :tracks, only: [:create, :edit, :show, :update, :destroy]
+  resources :tracks, only: [:edit, :show, :update, :destroy]
 
 
   # Example resource route with concerns:

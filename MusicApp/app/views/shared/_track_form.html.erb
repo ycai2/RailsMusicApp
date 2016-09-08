@@ -24,10 +24,14 @@
   <% @albums.each do |album| %>
     <option
       value="<%= album.id %>"
-      <%= "selected" if album.id == @track.band_id %>>
+      <%= "selected" if album.id == @track.album_id %>>
       <%= album.name %>
     </option>
   <% end %>
 </select>
 
+<br>
+<br>
+<textarea name="track[lyrics]" rows="8"><%= @track.lyrics %></textarea>
+<br>
 <input type="submit">

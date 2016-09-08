@@ -1,0 +1,23 @@
+<h1>Track: <%= @track.name %></h1>
+<h4><a href="<%= album_url(@track.album_id) %>">Back</a></h4>
+<hr>
+<p>
+  <em>Type</em>: <%= @track.bonus ? "Bonus" : "Regular" %>
+</p>
+<p>
+  <em>Album</em>: <%= @track.album.name %>
+</p>
+<p>
+  <em>Band</em>: <%= @track.band.name %>
+</p>
+
+<h3>Lyrics</h3>
+<p>
+  <%= @track.lyrics %>
+</p>
+<br>
+
+
+<a href="<%= edit_track_url(@track) %>">Edit Track</a>
+<br>
+<%= delete_button_to(track_url(@track), "Delete Track") %>
