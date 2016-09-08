@@ -1,0 +1,52 @@
+class AlbumsController < ApplicationController
+  before_action :require_user
+  before_action :current_album, only: [:edit, :show, :update]
+
+  def new
+    @album = Album.new
+  end
+
+  def create
+    @album = Album.new(album_params)
+    @album.band_id = params[:band_id]
+    if @album.save
+      redirect_to band_url(@album.band_id)
+    else
+      flash.now[:errors] = @album.errors.full_messages
+      render :new
+    end
+  end
+
+  def edit
+    render :edit
+  end
+
+  def show
+    @tracks = current_album.tracks
+    render :show
+  end
+
+  def update
+    @band.name = band_param[:name]
+    if @band.save
+      redirect_to bands_url
+    else
+      flash.now[:errors] = @band.errors.full_messages
+      render :new
+    end
+  end
+
+  def destroy
+    current_band.destroy
+    redirect_to bands_url
+  end
+
+  private
+  def album_params
+    params.require(:album).permit(:name, :yr, :live)
+  end
+
+  def current_album
+    @album ||= Album.find(params[:id])
+  end
+end

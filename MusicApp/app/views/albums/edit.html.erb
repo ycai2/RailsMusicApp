@@ -1,0 +1,8 @@
+<h1>Edit Album <%= @album.name %></h1>
+<a href="<%= album_url(@album) %>">Back</a>
+<hr>
+
+<form action="<%= album_url(@album) %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <%= render "shared/album_form" %>
+</form>

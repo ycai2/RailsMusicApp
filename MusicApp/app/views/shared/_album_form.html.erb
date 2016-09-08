@@ -1,0 +1,11 @@
+<%= auth_token %>
+<label for="album[name]">Name </label>
+<input type="text" name="album[name]" value="<%= @album.name %>">
+
+<label for="album[yr]">Year </label>
+<input type="number" name="album[yr]" value="<%= @album.yr %>">
+
+<p><input type="radio" name="album[live]" value="false">Studio</p>
+<p><input type="radio" name="album[live]" value="true">Live</p>
+
+<input type="submit">

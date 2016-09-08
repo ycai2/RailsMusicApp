@@ -23,14 +23,14 @@ class ApplicationController < ActionController::Base
     session[:session_token] = nil
   end
 
-  def require_user!
+  def require_user
     unless logged_in?
       flash[:errors] = ['You are not logged in!']
       redirect_to new_session_url
     end
   end
 
-  def require_no_user!
+  def require_no_user
     flash[:errors] = ['You are already logged in!']
     redirect_to user_url(current_user.id)
   end

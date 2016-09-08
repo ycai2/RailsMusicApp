@@ -1,5 +1,5 @@
 class BandsController < ApplicationController
-  before_action :require_user!
+  before_action :require_user
   before_action :current_band, only: [:edit, :show, :update]
 
   def index
@@ -12,7 +12,7 @@ class BandsController < ApplicationController
   end
 
   def create
-    @band = Band.new(band_param)
+    @band = Band.new(band_params)
     if @band.save
       redirect_to bands_url
     else
@@ -31,7 +31,7 @@ class BandsController < ApplicationController
   end
 
   def update
-    @band.name = band_param[:name]
+    @band.name = band_params[:name]
     if @band.save
       redirect_to bands_url
     else
@@ -46,7 +46,7 @@ class BandsController < ApplicationController
   end
 
   private
-  def band_param
+  def band_params
     params.require(:band).permit(:name)
   end
 
